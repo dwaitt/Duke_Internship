@@ -66,7 +66,10 @@ body <- dashboardBody(
                          
                          tabPanel("Protein Graph",
                                   fluidRow(box(title = "Total Proteins", width = 12, status = "primary", solidHeader = TRUE,
-                                               plotOutput("proteinPlot", height = "600px")))),
+                                               plotOutput("proteinPlot", height = "600px", brush = 'protein_brush'))),
+                                  fluidRow(
+                                    column(width = 5, tags$b(tags$i('Rows corresponding to datapoints selected')), tableOutput('protein_brush_table'))
+                                  )),
                          
                          tabPanel("Peptide Graph",
                                   fluidRow(box(title = "Total Peptides", width = 12, status = "primary", solidHeader = TRUE,

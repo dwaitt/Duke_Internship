@@ -137,6 +137,17 @@ server <- function(input, output, session) {
       ggtitle("Proteins") + theme_minimal()
   })
   
+  output$protein_brush_table <- renderTable({
+    n = nrow(brushedPoints(rv(), brush = input$protein_brush))
+    if(n==0)
+      return()
+    else
+      brushedPoints(rv(), brush = input$protein_brush)
+    
+  })
+  
+  
+  
   output$peptidePlot <- renderPlot ({
     df <- rv()
     ggplot(df, aes(x=Date, y=Peptides, fill = Date)) +
